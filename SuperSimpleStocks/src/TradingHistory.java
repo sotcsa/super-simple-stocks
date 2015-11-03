@@ -3,7 +3,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -51,17 +50,23 @@ public class TradingHistory {
 		Calendar cal = new GregorianCalendar();
 		cal.add(Calendar.MINUTE, -15);
 		final Date limitTime = cal.getTime();
-		for (Iterator<Trade> iterator = trades.iterator(); iterator.hasNext();) {
-			Trade trade = iterator.next();
-			if (trade.getTime().after(limitTime)) {
-				if (trade.getSymbol().equals(symbol)) {
-					list.add(trade);
+		List<Trade> syncList = getTrades();
+		synchronized (syncList) {
+			for (Trade trade: syncList) {
+				if (trade.getTime().after(limitTime)) {
+					if (trade.getSymbol().equals(symbol)) {
+						list.add(trade);
+					}
+				} else {
+					break;
 				}
-			} else {
-				break;
 			}
 		}
 		return list;
+	}
+
+	private List<Trade> getTrades() {
+		return Collections.synchronizedList(trades);
 	}
 
 }

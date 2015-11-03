@@ -33,16 +33,16 @@ public class Main {
 		System.out.format("Stock Price\n");
 		for (Stock stock : market.getStocks()) {
 			System.out.format("%s\t", stock.getSymbol());
-			System.out.format("%s\t\t\t", stock.calculateDividendYield());
-			System.out.format("%s\t\t\t", stock.calculatePERatio());
-			System.out.format("%s\n", stock.calculateStockPrice());
+			System.out.format("%.2f\t\t\t", stock.calculateDividendYield() * 100);
+			System.out.format("%.2f\t\t\t", stock.calculatePERatio());
+			System.out.format("%.2f\n", stock.calculateStockPrice());
 		}
 		System.out.format("%s All Share Index: %s\n", market.getName(), market.calculateIndex());
 		simulator.terminate();
 	}
 
 	/**
-	 * Initialises the TradeSimulator and market.
+	 * Initializes the TradeSimulator and market.
 	 */
 	private static void init() {
 		market = Market.getInstance();
