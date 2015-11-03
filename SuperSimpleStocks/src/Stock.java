@@ -1,5 +1,3 @@
-import java.math.BigDecimal;
-
 /**
  * The stock domain model. It can calculates stock related values from trading
  * system.
@@ -12,13 +10,13 @@ public class Stock {
 	private final String symbol;
 	/** The last dividend */
 
-	private BigDecimal lastDividend;
+	private Double lastDividend;
 
 	/** The par value */
-	private BigDecimal parValue;
+	private Double parValue;
 
 	/** The fixed dividend */
-	private BigDecimal fixedDividend;
+	private Double fixedDividend;
 
 	/**
 	 * @param symbol
@@ -27,14 +25,14 @@ public class Stock {
 		this.symbol = symbol;
 	}
 
-	public Stock(final String symbol, final BigDecimal lastDividend, final BigDecimal parValue) {
+	public Stock(final String symbol, final Double lastDividend, final Double parValue) {
 		this(symbol);
 		this.lastDividend = lastDividend;
 		this.parValue = parValue;
 	}
 
-	public Stock(final String symbol, final BigDecimal lastDividend, final BigDecimal parValue,
-			final BigDecimal fixedDividend) {
+	public Stock(final String symbol, final Double lastDividend, final Double parValue,
+			final Double fixedDividend) {
 		this(symbol, lastDividend, parValue);
 		this.fixedDividend = fixedDividend;
 	}
@@ -44,7 +42,7 @@ public class Stock {
 	 * 
 	 * @return calculated stock price
 	 */
-	public BigDecimal calculateDividendYield() {
+	public Double calculateDividendYield() {
 		// TODO: implement it
 		return null;
 	}
@@ -54,7 +52,7 @@ public class Stock {
 	 * 
 	 * @return calculated stock price
 	 */
-	public BigDecimal calculatePERatio() {
+	public Double calculatePERatio() {
 		// TODO: implement it
 		return null;
 	}
@@ -64,7 +62,7 @@ public class Stock {
 	 * 
 	 * @return calculated stock price
 	 */
-	public BigDecimal calculateStockPrice() {
+	public Double calculateStockPrice() {
 		// TODO: implement it
 		return null;
 	}
@@ -77,7 +75,7 @@ public class Stock {
 	 * @param lastDividend
 	 *            the lastDividend to set
 	 */
-	public void setLastDividend(BigDecimal lastDividend) {
+	public void setLastDividend(Double lastDividend) {
 		this.lastDividend = lastDividend;
 	}
 
@@ -85,7 +83,7 @@ public class Stock {
 	 * @param parValue
 	 *            the parValue to set
 	 */
-	public void setParValue(BigDecimal parValue) {
+	public void setParValue(Double parValue) {
 		this.parValue = parValue;
 	}
 
@@ -93,7 +91,7 @@ public class Stock {
 	 * @param fixedDividend
 	 *            the fixedDividend to set
 	 */
-	public void setFixedDividend(BigDecimal fixedDividend) {
+	public void setFixedDividend(Double fixedDividend) {
 		this.fixedDividend = fixedDividend;
 	}
 
