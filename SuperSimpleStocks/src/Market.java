@@ -1,21 +1,43 @@
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
+/**
+ * The market domain model to store stocks and to calculate index.
+ * 
+ * @author Csaba Soti
+ */
 public class Market {
 
-	/** The name of market */
-	private final String name;
+	/** The singleton instance. */
+	private static final Market instance = new Market("GBCE");
 
 	/** The inner map to stock stocks */
-	private final Map<String, Stock> stockMap = new HashMap<String, Stock>();
+	private final Map<String, Stock> stockMap = new LinkedHashMap<String, Stock>();
+
+	/** The market name */
+	private String name;
 
 	/**
-	 * Class constructor.
+	 * The hidden class constructor.
 	 * 
-	 * @param name market name
+	 * @param name
+	 *            market name
+	 * 
 	 */
-	public Market(String name) {
+	private Market(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * Retrieves the singleton instance.
+	 * 
+	 * @return the singleton instance
+	 */
+	public static Market getInstance() {
+		return instance;
 	}
 
 	/**
@@ -27,7 +49,10 @@ public class Market {
 	 *            using as value
 	 */
 	public void put(final String stockSymbol, final Stock stock) {
-		stockMap.put(stockSymbol, stock);
+		synchronized (this) {
+			stockMap.put(stockSymbol, stock);
+		}
+
 	}
 
 	/**
@@ -43,7 +68,7 @@ public class Market {
 				product = product * stockPrice;
 			}
 		}
-		return Math.pow(product, 1.0 / stockMap.size());
+		return Math.pow(product, 1.0 / getLength());
 	}
 
 	/**
@@ -53,11 +78,36 @@ public class Market {
 		return name;
 	}
 
+	public int getLength() {
+		return stockMap.size();
+	}
+
 	/**
 	 * @return the stockMap
 	 */
 	public Map<String, Stock> getStockMap() {
 		return stockMap;
+	}
+
+	public Collection<Stock> getStocks() {
+		return stockMap.values();
+	}
+
+	// public Stock getStockBySymbol(final String symbol) {
+	// return stockMap.get(symbol);
+	// }
+
+	public Stock getStockByIndex(int stockIndex) {
+		Iterator<Entry<String, Stock>> iterator = stockMap.entrySet().iterator();
+		int n = 0;
+		while (iterator.hasNext()) {
+			Entry<String, Stock> entry = iterator.next();
+			if (n == stockIndex) {
+				return entry.getValue();
+			}
+			n++;
+		}
+		return null;
 	}
 
 }

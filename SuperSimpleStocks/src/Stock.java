@@ -1,5 +1,7 @@
+import java.util.List;
+
 /**
- * The stock domain model. It can calculates stock related values from trading
+ * The stock domain model. It can calculate stock related values from trading
  * system.
  * 
  * @author Csaba Soti
@@ -8,8 +10,11 @@ public class Stock {
 
 	/** The stock symbol */
 	private final String symbol;
-	/** The last dividend */
 
+	/** The stock type */
+	private final StockType type;
+
+	/** The last dividend */
 	private Double lastDividend;
 
 	/** The par value */
@@ -18,22 +23,36 @@ public class Stock {
 	/** The fixed dividend */
 	private Double fixedDividend;
 
-	/**
-	 * @param symbol
-	 */
-	public Stock(final String symbol) {
-		this.symbol = symbol;
-	}
+	/** The place where price of stocks is stored */
+	private StockInfo stockInfo = StockInfo.getInstance();
 
-	public Stock(final String symbol, final Double lastDividend, final Double parValue) {
-		this(symbol);
+	/**
+	 * Class constructor.
+	 * 
+	 * @param symbol
+	 * @param type
+	 * @param lastDividend
+	 * @param parValue
+	 */
+	public Stock(final String symbol, StockType type, final Double lastDividend, final Double parValue) {
+		this.symbol = symbol;
+		this.type = type;
 		this.lastDividend = lastDividend;
 		this.parValue = parValue;
 	}
 
-	public Stock(final String symbol, final Double lastDividend, final Double parValue,
+	/**
+	 * Class constructor.
+	 * 
+	 * @param symbol
+	 * @param type
+	 * @param lastDividend
+	 * @param parValue
+	 * @param fixedDividend
+	 */
+	public Stock(final String symbol, StockType type, final Double lastDividend, final Double parValue,
 			final Double fixedDividend) {
-		this(symbol, lastDividend, parValue);
+		this(symbol, type, lastDividend, parValue);
 		this.fixedDividend = fixedDividend;
 	}
 
@@ -43,8 +62,16 @@ public class Stock {
 	 * @return calculated stock price
 	 */
 	public Double calculateDividendYield() {
-		// TODO: implement it
-		return null;
+		Double result;
+		switch (type) {
+			case PREFERRED:
+				result = (fixedDividend * parValue) / getTickerPrice();
+				break;
+			default:
+				result = lastDividend / getTickerPrice();
+				break;
+		}
+		return result;
 	}
 
 	/**
@@ -53,8 +80,7 @@ public class Stock {
 	 * @return calculated stock price
 	 */
 	public Double calculatePERatio() {
-		// TODO: implement it
-		return null;
+		return getTickerPrice() / lastDividend;
 	}
 
 	/**
@@ -63,8 +89,18 @@ public class Stock {
 	 * @return calculated stock price
 	 */
 	public Double calculateStockPrice() {
-		// TODO: implement it
-		return null;
+		final List<Trade> trades = TradingHistory.getInstance().getLastFifteenMinutesTrades(symbol);
+		double sumOfProduct = 0.0;
+		double quantities = 0.0;
+		for (Trade trade : trades) {
+			sumOfProduct += trade.getTickerPrice() * trade.getQuantity();
+			quantities += trade.getQuantity();
+		}
+		return sumOfProduct / quantities;
+	}
+
+	private Double getTickerPrice() {
+		return stockInfo.getTickerPrice(symbol);
 	}
 
 	public String getSymbol() {
