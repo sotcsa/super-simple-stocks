@@ -1,3 +1,5 @@
+package com.test.supersimplestocks.domain.model;
+
 import java.util.Date;
 
 /**

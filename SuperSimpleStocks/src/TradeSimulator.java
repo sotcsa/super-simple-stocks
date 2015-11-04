@@ -1,5 +1,9 @@
-import java.text.SimpleDateFormat;
 import java.util.Random;
+
+import com.test.supersimplestocks.domain.model.Market;
+import com.test.supersimplestocks.domain.model.Stock;
+import com.test.supersimplestocks.domain.model.Trade;
+import com.test.supersimplestocks.domain.model.TradingHistory;
 
 /**
  * Simulates the trading system.

@@ -1,5 +1,9 @@
 import java.text.DecimalFormat;
 
+import com.test.supersimplestocks.domain.model.Market;
+import com.test.supersimplestocks.domain.model.Stock;
+import com.test.supersimplestocks.domain.model.StockType;
+
 /**
  * Main class to start.
  * 
