@@ -17,8 +17,6 @@ public class TradeSimulator implements Runnable {
 	/** Flag to able to terminate simulator */
 	private boolean running = true;
 	
-	private final SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss.SSS");
-
 	/**
 	 * Method to stop thread.
 	 */
@@ -29,7 +27,6 @@ public class TradeSimulator implements Runnable {
 	@Override
 	public void run() {
 		Market market = Market.getInstance();
-		System.out.println("TradeSimulator running, name: " + Thread.currentThread().getName());
 		while (running) {
 			if (market.getLength() > 0) {
 				int stockIndex = Math.abs(randomGenerator.nextInt()) % market.getLength();
@@ -39,7 +36,6 @@ public class TradeSimulator implements Runnable {
 				trade.setTickerPrice(randomGenerator.nextDouble() * 100);
 				trade.setQuantity(randomGenerator.nextInt(100));
 				tradingHistory.put(trade);
-				System.out.format("%s %s quantity: %s tickerPrice: %.2f\n", sdf.format(trade.getTime()), trade.getSymbol(), trade.getQuantity(), trade.getTickerPrice());
 			}
 			try {
 				// sleeping 10 milliseconds

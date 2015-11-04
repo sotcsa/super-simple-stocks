@@ -80,7 +80,11 @@ public class Stock {
 	 * @return calculated stock price
 	 */
 	public Double calculatePERatio() {
-		return getTickerPrice() / lastDividend;
+		Double dividendYield = calculateDividendYield();
+		if (dividendYield != 0.0) {
+			return getTickerPrice() / calculateDividendYield();
+		}
+		return null;
 	}
 
 	/**
@@ -89,7 +93,7 @@ public class Stock {
 	 * @return calculated stock price
 	 */
 	public Double calculateStockPrice() {
-		final List<Trade> trades = TradingHistory.getInstance().getLastFifteenMinutesTrades(symbol);
+		final List<Trade> trades = TradingHistory.getInstance().getLastFifteenMinutesTradesWithoutLock(symbol);
 		double sumOfProduct = 0.0;
 		double quantities = 0.0;
 		for (Trade trade : trades) {
