@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Random;
 
 /**
@@ -15,6 +16,8 @@ public class TradeSimulator implements Runnable {
 
 	/** Flag to able to terminate simulator */
 	private boolean running = true;
+	
+	private final SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss.SSS");
 
 	/**
 	 * Method to stop thread.
@@ -34,12 +37,13 @@ public class TradeSimulator implements Runnable {
 				Trade trade = new Trade();
 				trade.setSymbol(stock.getSymbol());
 				trade.setTickerPrice(randomGenerator.nextDouble() * 100);
+				trade.setQuantity(randomGenerator.nextInt(100));
 				tradingHistory.put(trade);
-				System.out.format("%s %s %s\n", trade.getTime(), trade.getSymbol(), trade.getTickerPrice());
+				System.out.format("%s %s quantity: %s tickerPrice: %.2f\n", sdf.format(trade.getTime()), trade.getSymbol(), trade.getQuantity(), trade.getTickerPrice());
 			}
 			try {
-				// sleeping 100 milliseconds
-				Thread.sleep(100);
+				// sleeping 10 milliseconds
+				Thread.sleep(10);
 			} catch (InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}

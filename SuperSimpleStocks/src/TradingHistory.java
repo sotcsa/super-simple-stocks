@@ -3,7 +3,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Stores historical trade data in the memory.
@@ -15,14 +17,17 @@ public class TradingHistory {
 	/** The singleton instance */
 	private static final TradingHistory instance = new TradingHistory();
 
-	private List<Trade> trades = new ArrayList<Trade>();
+	private List<Trade> trades = new LinkedList<Trade>();
 
 	private StockInfo stockInfo = StockInfo.getInstance();
+
+	private ReentrantLock lock;
 
 	/**
 	 * The hidden constructor.
 	 */
 	protected TradingHistory() {
+		this.lock = new ReentrantLock();
 	}
 
 	/**
@@ -35,7 +40,12 @@ public class TradingHistory {
 	}
 
 	public void put(Trade trade) {
-		trades.add(trade);
+		try {
+			lock.lock();
+			trades.add(trade);
+		} finally {
+			lock.unlock();
+		}
 		stockInfo.update(trade);
 	}
 
@@ -50,9 +60,9 @@ public class TradingHistory {
 		Calendar cal = new GregorianCalendar();
 		cal.add(Calendar.MINUTE, -15);
 		final Date limitTime = cal.getTime();
-		List<Trade> syncList = getTrades();
-		synchronized (syncList) {
-			for (Trade trade: syncList) {
+		try {
+			lock.lock();
+			for (Trade trade: trades) {
 				if (trade.getTime().after(limitTime)) {
 					if (trade.getSymbol().equals(symbol)) {
 						list.add(trade);
@@ -61,7 +71,10 @@ public class TradingHistory {
 					break;
 				}
 			}
+		} finally {
+			lock.unlock();
 		}
+
 		return list;
 	}
 
