@@ -1,5 +1,10 @@
 import java.util.List;
 
+import com.test.supersimplestocks.domain.model.StockInfo;
+import com.test.supersimplestocks.domain.model.StockType;
+import com.test.supersimplestocks.domain.model.Trade;
+import com.test.supersimplestocks.domain.model.TradingHistory;
+
 /**
  * The stock domain model. It can calculate stock related values from trading
  * system.

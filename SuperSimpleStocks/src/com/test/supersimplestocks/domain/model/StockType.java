@@ -1,3 +1,5 @@
+package com.test.supersimplestocks.domain.model;
+
 /**
  * Enumeration to define types of stocks.
  * 

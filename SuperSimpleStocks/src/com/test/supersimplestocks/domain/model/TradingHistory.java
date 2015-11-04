@@ -1,10 +1,14 @@
+package com.test.supersimplestocks.domain.model;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
+
+import com.test.supersimplestocks.domain.model.StockInfo;
+import com.test.supersimplestocks.domain.model.Trade;
 
 /**
  * Stores historical trade data in the memory.
