@@ -1,5 +1,6 @@
 package com.test.supersimplestocks.domain.model;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ public class StockInfo {
 	private static final StockInfo instance = new StockInfo();
 
 	/** The internal cache to store latest prices */
-	private Map<String, Double> cache = new HashMap<String, Double>();
+	private Map<String, BigDecimal> cache = new HashMap<String, BigDecimal>();
 
 	/**
 	 * Retrieves the singleton instance.
@@ -40,7 +41,7 @@ public class StockInfo {
 	 *            symbol key to find stock
 	 * @return last price
 	 */
-	public Double getTickerPrice(final String symbol) {
+	public BigDecimal getTickerPrice(final String symbol) {
 		return cache.get(symbol);
 	}
 

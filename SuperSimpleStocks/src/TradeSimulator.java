@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.Random;
 
 import com.test.supersimplestocks.domain.model.Market;
@@ -38,7 +40,7 @@ public class TradeSimulator implements Runnable {
 				Stock stock = market.getStockByIndex(stockIndex);
 				Trade trade = new Trade();
 				trade.setSymbol(stock.getSymbol());
-				trade.setTickerPrice(randomGenerator.nextDouble() * 100);
+				trade.setTickerPrice(new BigDecimal(randomGenerator.nextDouble() * 100));
 				trade.setQuantity(randomGenerator.nextInt(100));
 				trade.setTradeType(randomGenerator.nextBoolean() ? TradeType.BUY : TradeType.SELL);
 				tradingHistory.put(trade);

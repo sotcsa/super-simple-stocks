@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import com.test.supersimplestocks.domain.model.Market;
@@ -43,22 +44,22 @@ public class Main {
 		System.out.format(String.format("%54s\n", " ").replace(" ", "-"));
 		for (Stock stock : market.getStocks()) {
 			System.out.format("%1$6s|", stock.getSymbol());
-			System.out.format("%1$15s|", format(stock.calculateDividendYield() * 100, "%"));
+			System.out.format("%1$15s|", format(stock.calculateDividendYield(), "%"));
 			System.out.format("%1$15s|", format(stock.calculatePERatio()));
 			System.out.format("%1$15s|\n", format(stock.calculateStockPrice()));
 		}
 		System.out.format("%s All Share Index: %s\n", market.getName(), format(market.calculateIndex()));
 	}
 
-	private static String format(Double number, String suffix) {
-		if (number == null) {
+	private static String format(BigDecimal bigDecimal, String suffix) {
+		if (bigDecimal == null) {
 			return "  -  ";
 		} else {
-			return df.format(number) + suffix;
+			return df.format(bigDecimal) + suffix;
 		}
 	}
 
-	private static String format(Double number) {
+	private static String format(BigDecimal number) {
 		return format(number, "");
 	}
 
@@ -67,11 +68,11 @@ public class Main {
 	 */
 	private static void init() {
 		market = Market.getInstance();
-		market.put("TEA", new Stock("TEA", StockType.COMMON,    0.0, 100.0));
-		market.put("POP", new Stock("POP", StockType.COMMON,    8.0, 100.0));
-		market.put("ALE", new Stock("ALE", StockType.COMMON,   23.0, 60.0));
-		market.put("GIN", new Stock("GIN", StockType.PREFERRED, 8.0, 100.0, 0.02));
-		market.put("JOE", new Stock("JOE", StockType.COMMON,   13.0, 250.0));
+		market.put("TEA", new Stock("TEA", StockType.COMMON,    BigDecimal.ZERO,        new BigDecimal("100.0")));
+		market.put("POP", new Stock("POP", StockType.COMMON,    new BigDecimal("8.0"),  new BigDecimal("100.0")));
+		market.put("ALE", new Stock("ALE", StockType.COMMON,    new BigDecimal("23.0"), new BigDecimal("60.0")));
+		market.put("GIN", new Stock("GIN", StockType.PREFERRED, new BigDecimal("8.0"),  new BigDecimal("100.0"), new BigDecimal("0.02")));
+		market.put("JOE", new Stock("JOE", StockType.COMMON,    new BigDecimal("13.0"), new BigDecimal("250.0")));
 		new Thread(simulator).start();
 		try {
 			// waiting 10 seconds so that simulator can generate enough test data

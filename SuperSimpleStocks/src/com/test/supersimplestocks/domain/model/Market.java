@@ -1,5 +1,6 @@
 package com.test.supersimplestocks.domain.model;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -62,15 +63,15 @@ public class Market {
 	 * 
 	 * @return the GBCE All Share Index
 	 */
-	public double calculateIndex() {
-		double product = 1.0;
+	public BigDecimal calculateIndex() {
+		BigDecimal product = BigDecimal.ONE;
 		for (Stock stock : stockMap.values()) {
-			Double stockPrice = stock.calculateStockPrice();
+			BigDecimal stockPrice = stock.calculateStockPrice();
 			if (stockPrice != null) {
-				product = product * stockPrice;
+				product = product.multiply(stockPrice);
 			}
 		}
-		return Math.pow(product, 1.0 / getLength());
+		return new BigDecimal(Math.pow(product.doubleValue(), 1.0 / getLength()));
 	}
 
 	/**

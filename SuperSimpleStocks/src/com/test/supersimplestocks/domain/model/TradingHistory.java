@@ -7,9 +7,6 @@ import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.test.supersimplestocks.domain.model.StockInfo;
-import com.test.supersimplestocks.domain.model.Trade;
-
 /**
  * Stores historical trade data in the memory.
  * 
@@ -51,11 +48,12 @@ public class TradingHistory {
 	 *            stock symbol to filter trades
 	 * @return list of trades
 	 */
-	public List<Trade> getLastFifteenMinutesTradesWithoutLock(final String symbol) {
+	public List<Trade> getLastFifteenMinutesTrades(final String symbol) {
 		final List<Trade> list = new ArrayList<Trade>();
 		Calendar cal = new GregorianCalendar();
 		cal.add(Calendar.MINUTE, -15);
 		final Date limitTime = cal.getTime();
+		// This part is thread safe, because ...
 		for (int i = trades.size() - 1; i >= 0; i--) {
 			Trade trade = trades.get(i);
 			if (trade.getTime().after(limitTime)) {

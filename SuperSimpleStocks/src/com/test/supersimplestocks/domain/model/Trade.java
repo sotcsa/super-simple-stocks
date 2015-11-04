@@ -1,5 +1,6 @@
 package com.test.supersimplestocks.domain.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ public class Trade {
 	private final Date time = new Date();
 
 	/** The last price */
-	private double tickerPrice;
+	private BigDecimal tickerPrice;
 
 	/** The number of stocks */
 	private int quantity;
@@ -49,7 +50,7 @@ public class Trade {
 	/**
 	 * @return the tickerPrice
 	 */
-	public double getTickerPrice() {
+	public BigDecimal getTickerPrice() {
 		return tickerPrice;
 	}
 
@@ -57,7 +58,7 @@ public class Trade {
 	 * @param tickerPrice
 	 *            the tickerPrice to set
 	 */
-	public void setTickerPrice(double tickerPrice) {
+	public void setTickerPrice(BigDecimal tickerPrice) {
 		this.tickerPrice = tickerPrice;
 	}
 
