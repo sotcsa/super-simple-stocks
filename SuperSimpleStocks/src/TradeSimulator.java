@@ -3,6 +3,7 @@ import java.util.Random;
 import com.test.supersimplestocks.domain.model.Market;
 import com.test.supersimplestocks.domain.model.Stock;
 import com.test.supersimplestocks.domain.model.Trade;
+import com.test.supersimplestocks.domain.model.TradeType;
 import com.test.supersimplestocks.domain.model.TradingHistory;
 
 /**
@@ -39,6 +40,7 @@ public class TradeSimulator implements Runnable {
 				trade.setSymbol(stock.getSymbol());
 				trade.setTickerPrice(randomGenerator.nextDouble() * 100);
 				trade.setQuantity(randomGenerator.nextInt(100));
+				trade.setTradeType(randomGenerator.nextBoolean() ? TradeType.BUY : TradeType.SELL);
 				tradingHistory.put(trade);
 			}
 			try {

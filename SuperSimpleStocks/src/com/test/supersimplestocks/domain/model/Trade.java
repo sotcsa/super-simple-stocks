@@ -21,6 +21,9 @@ public class Trade {
 	/** The number of stocks */
 	private int quantity;
 
+	/** The type of trade */
+	private TradeType tradeType;
+
 	/**
 	 * @return the symbol
 	 */
@@ -71,6 +74,21 @@ public class Trade {
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	/**
+	 * @return the tradeType
+	 */
+	public TradeType getTradeType() {
+		return tradeType;
+	}
+
+	/**
+	 * @param tradeType
+	 *            the tradeType to set
+	 */
+	public void setTradeType(TradeType tradeType) {
+		this.tradeType = tradeType;
 	}
 
 }
