@@ -1,4 +1,4 @@
-package com.test.supersimplestocks.domain.model;
+package com.jpmorgan.supersimplestocks.domain.model;
 
 /**
  * Enumeration to define types of trade.

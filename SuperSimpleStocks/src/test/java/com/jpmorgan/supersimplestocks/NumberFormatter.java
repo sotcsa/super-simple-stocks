@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.test.supersimplestocks;
+package com.jpmorgan.supersimplestocks;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

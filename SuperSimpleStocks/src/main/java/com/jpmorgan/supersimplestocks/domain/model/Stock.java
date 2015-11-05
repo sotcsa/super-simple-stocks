@@ -1,4 +1,4 @@
-package com.test.supersimplestocks.domain.model;
+package com.jpmorgan.supersimplestocks.domain.model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,12 +1,12 @@
-package com.test.supersimplestocks;
+package com.jpmorgan.supersimplestocks;
 import java.math.BigDecimal;
 import java.util.Random;
 
-import com.test.supersimplestocks.domain.model.Exchange;
-import com.test.supersimplestocks.domain.model.Stock;
-import com.test.supersimplestocks.domain.model.Trade;
-import com.test.supersimplestocks.domain.model.TradeType;
-import com.test.supersimplestocks.domain.model.TradingHistory;
+import com.jpmorgan.supersimplestocks.domain.model.Exchange;
+import com.jpmorgan.supersimplestocks.domain.model.Stock;
+import com.jpmorgan.supersimplestocks.domain.model.Trade;
+import com.jpmorgan.supersimplestocks.domain.model.TradeType;
+import com.jpmorgan.supersimplestocks.domain.model.TradingHistory;
 
 /**
  * Simulates the trading system.

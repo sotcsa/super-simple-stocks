@@ -1,4 +1,4 @@
-package com.test.supersimplestocks.domain.model;
+package com.jpmorgan.supersimplestocks.domain.model;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.test.supersimplestocks.NumberFormatter;
+import com.jpmorgan.supersimplestocks.NumberFormatter;
 
 /**
  * Stores historical trade data in the memory.

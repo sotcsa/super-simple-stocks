@@ -1,4 +1,4 @@
-package com.test.supersimplestocks;
+package com.jpmorgan.supersimplestocks;
 
 import java.math.BigDecimal;
 
@@ -8,10 +8,10 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.test.supersimplestocks.domain.model.Exchange;
-import com.test.supersimplestocks.domain.model.Stock;
-import com.test.supersimplestocks.domain.model.StockType;
-import com.test.supersimplestocks.domain.model.TradingHistory;
+import com.jpmorgan.supersimplestocks.domain.model.Exchange;
+import com.jpmorgan.supersimplestocks.domain.model.Stock;
+import com.jpmorgan.supersimplestocks.domain.model.StockType;
+import com.jpmorgan.supersimplestocks.domain.model.TradingHistory;
 
 /**
  * Main class to start.
