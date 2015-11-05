@@ -1,8 +1,8 @@
+package com.test.supersimplestocks;
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.Random;
 
-import com.test.supersimplestocks.domain.model.Market;
+import com.test.supersimplestocks.domain.model.Exchange;
 import com.test.supersimplestocks.domain.model.Stock;
 import com.test.supersimplestocks.domain.model.Trade;
 import com.test.supersimplestocks.domain.model.TradeType;
@@ -13,7 +13,7 @@ import com.test.supersimplestocks.domain.model.TradingHistory;
  * 
  * @author Csaba Soti
  */
-public class TradeSimulator implements Runnable {
+public class TradingSimulator implements Runnable {
 
 	/** The random generator object */
 	Random randomGenerator = new Random();
@@ -33,17 +33,20 @@ public class TradeSimulator implements Runnable {
 
 	@Override
 	public void run() {
-		Market market = Market.getInstance();
+		Exchange exchange = Exchange.getInstance();
 		while (running) {
-			if (market.getLength() > 0) {
-				int stockIndex = Math.abs(randomGenerator.nextInt()) % market.getLength();
-				Stock stock = market.getStockByIndex(stockIndex);
+			if (exchange.getLength() > 0) {
+				int stockIndex = Math.abs(randomGenerator.nextInt()) % exchange.getLength();
+				Stock stock = exchange.getStockByIndex(stockIndex);
 				Trade trade = new Trade();
 				trade.setSymbol(stock.getSymbol());
-				trade.setTickerPrice(new BigDecimal(randomGenerator.nextDouble() * 100));
+				double rangeMin = 70/100;
+				double rangeMax = 200/100;
+				double price = (rangeMin + (rangeMax - rangeMin) * randomGenerator.nextDouble()) * 100;
+				trade.setTickerPrice(new BigDecimal(price));
 				trade.setQuantity(randomGenerator.nextInt(100));
 				trade.setTradeType(randomGenerator.nextBoolean() ? TradeType.BUY : TradeType.SELL);
-				tradingHistory.put(trade);
+				tradingHistory.record(trade);
 			}
 			try {
 				// sleeping 10 milliseconds

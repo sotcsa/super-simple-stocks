@@ -8,29 +8,29 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * The market domain model to store stocks and to calculate index.
+ * The exchange domain model to store stocks and to calculate index.
  * 
  * @author Csaba Soti
  */
-public class Market {
+public class Exchange {
 
 	/** The singleton instance. */
-	private static final Market instance = new Market("GBCE");
+	private static final Exchange instance = new Exchange("GBCE");
 
 	/** The inner map to stock stocks */
 	private final Map<String, Stock> stockMap = new LinkedHashMap<String, Stock>();
 
-	/** The market name */
+	/** The exchange name */
 	private String name;
 
 	/**
 	 * The hidden class constructor.
 	 * 
 	 * @param name
-	 *            market name
+	 *            exchange name
 	 * 
 	 */
-	private Market(String name) {
+	private Exchange(String name) {
 		this.name = name;
 	}
 
@@ -39,21 +39,19 @@ public class Market {
 	 * 
 	 * @return the singleton instance
 	 */
-	public static Market getInstance() {
+	public static Exchange getInstance() {
 		return instance;
 	}
 
 	/**
 	 * Puts an stock to the inner map.
 	 * 
-	 * @param stockSymbol
-	 *            using as key
 	 * @param stock
-	 *            using as value
+	 *            adding symbol as key and object as value
 	 */
-	public void put(final String stockSymbol, final Stock stock) {
+	public void addStock(final Stock stock) {
 		synchronized (this) {
-			stockMap.put(stockSymbol, stock);
+			stockMap.put(stock.getSymbol(), stock);
 		}
 
 	}
