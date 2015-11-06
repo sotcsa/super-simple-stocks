@@ -27,6 +27,7 @@ public class StockInfo {
 	}
 
 	/**
+	 * Updates the stock price cache
 	 * 
 	 * @param trade
 	 */

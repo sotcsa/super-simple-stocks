@@ -12,6 +12,7 @@ import com.jpmorgan.supersimplestocks.domain.model.Exchange;
 import com.jpmorgan.supersimplestocks.domain.model.Stock;
 import com.jpmorgan.supersimplestocks.domain.model.StockType;
 import com.jpmorgan.supersimplestocks.domain.model.TradingHistory;
+import com.jpmorgan.supersimplestocks.utils.NumberFormatter;
 
 /**
  * Main class to start.

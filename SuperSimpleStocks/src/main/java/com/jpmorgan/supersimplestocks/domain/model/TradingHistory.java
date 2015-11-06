@@ -11,7 +11,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jpmorgan.supersimplestocks.NumberFormatter;
+import com.jpmorgan.supersimplestocks.utils.NumberFormatter;
 
 /**
  * Stores historical trade data in the memory.
