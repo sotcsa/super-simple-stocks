@@ -69,7 +69,7 @@ public class Exchange {
 				product = product.multiply(stockPrice);
 			}
 		}
-		return new BigDecimal(Math.pow(product.doubleValue(), 1.0 / getLength()));
+		return new BigDecimal(Math.pow(product.doubleValue(), 1.0 / getSize()));
 	}
 
 	/**
@@ -79,7 +79,11 @@ public class Exchange {
 		return name;
 	}
 
-	public int getLength() {
+	/**
+	 * Retrieves size of containing stock list
+	 * @return
+	 */
+	public int getSize() {
 		return stockMap.size();
 	}
 
@@ -90,13 +94,14 @@ public class Exchange {
 		return stockMap;
 	}
 
+	/**
+	 * Retrieves containing stocks;
+	 * 
+	 * @return stock list
+	 */
 	public Collection<Stock> getStocks() {
 		return stockMap.values();
 	}
-
-	// public Stock getStockBySymbol(final String symbol) {
-	// return stockMap.get(symbol);
-	// }
 
 	public Stock getStockByIndex(int stockIndex) {
 		Iterator<Entry<String, Stock>> iterator = stockMap.entrySet().iterator();

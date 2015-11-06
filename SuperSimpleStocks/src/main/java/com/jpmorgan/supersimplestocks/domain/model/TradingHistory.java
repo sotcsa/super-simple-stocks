@@ -48,7 +48,7 @@ public class TradingHistory {
 	}
 
 	/**
-	 * Storing a trade object, updating the stock price cache.
+	 * Records a trade object and updates the stock price cache.
 	 * 
 	 * @param trade
 	 */
@@ -90,7 +90,6 @@ public class TradingHistory {
 
 	/**
 	 * Making statistics about trades. Only for testing purpose.
-	 * 
 	 */
 	public void logStatistics() {
 		final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");

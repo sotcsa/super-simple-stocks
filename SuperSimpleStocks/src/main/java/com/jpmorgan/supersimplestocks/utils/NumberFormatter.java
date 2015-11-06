@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jpmorgan.supersimplestocks.utils;
 
 import java.math.BigDecimal;

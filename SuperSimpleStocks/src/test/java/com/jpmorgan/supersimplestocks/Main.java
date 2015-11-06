@@ -21,13 +21,14 @@ import com.jpmorgan.supersimplestocks.utils.NumberFormatter;
  */
 public class Main {
 
+	/** The Logger object */
+	private final static Logger logger = LoggerFactory.getLogger(Main.class);
+
 	/** Current exchange, with defined list of stocks. */
 	private static Exchange exchange;
 
 	/** The trade simulator trade */
 	private static TradingSimulator simulator = new TradingSimulator();
-
-	private final static Logger logger = LoggerFactory.getLogger(Main.class);
 
 	/**
 	 * The main test. It prints out the calculations of all stock values.

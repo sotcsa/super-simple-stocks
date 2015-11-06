@@ -1,4 +1,5 @@
 package com.jpmorgan.supersimplestocks;
+
 import java.math.BigDecimal;
 import java.util.Random;
 
@@ -23,7 +24,7 @@ public class TradingSimulator implements Runnable {
 
 	/** Flag to able to terminate simulator */
 	private boolean running = true;
-	
+
 	/**
 	 * Method to stop thread.
 	 */
@@ -35,17 +36,26 @@ public class TradingSimulator implements Runnable {
 	public void run() {
 		Exchange exchange = Exchange.getInstance();
 		while (running) {
-			if (exchange.getLength() > 0) {
-				int stockIndex = Math.abs(randomGenerator.nextInt()) % exchange.getLength();
-				Stock stock = exchange.getStockByIndex(stockIndex);
+			if (exchange.getSize() > 0) {
 				Trade trade = new Trade();
+
+				// Find a random stock
+				int stockIndex = Math.abs(randomGenerator.nextInt()) % exchange.getSize();
+				Stock stock = exchange.getStockByIndex(stockIndex);
 				trade.setSymbol(stock.getSymbol());
-				double rangeMin = 70/100;
-				double rangeMax = 200/100;
+
+				// Fetching a random price
+				double rangeMin = 70 / 100;
+				double rangeMax = 200 / 100;
 				double price = (rangeMin + (rangeMax - rangeMin) * randomGenerator.nextDouble()) * 100;
 				trade.setTickerPrice(new BigDecimal(price));
+
+				// Fetching a random quantity
 				trade.setQuantity(randomGenerator.nextInt(100));
+
+				// Fetching a random Buy or Sell trade type
 				trade.setTradeType(randomGenerator.nextBoolean() ? TradeType.BUY : TradeType.SELL);
+
 				tradingHistory.record(trade);
 			}
 			try {

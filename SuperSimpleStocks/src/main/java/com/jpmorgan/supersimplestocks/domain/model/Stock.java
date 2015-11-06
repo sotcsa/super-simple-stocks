@@ -110,10 +110,20 @@ public class Stock {
 		}
 	}
 
+	/**
+	 * Retrieves the last price of stock.
+	 * 
+	 * @return price
+	 */
 	private BigDecimal getTickerPrice() {
 		return stockInfo.getTickerPrice(symbol);
 	}
 
+	/**
+	 * Retrieves the stock symbol.
+	 * 
+	 * @return stock symbol
+	 */
 	public String getSymbol() {
 		return symbol;
 	}
