@@ -10,7 +10,7 @@ This exercise project is a simple trading system, this repository does not conta
 ## Optional:
 * Eclipse with Maven
 
-## How to run?
+## How to test?
 ```sh
 mvn test
 ```
@@ -27,6 +27,6 @@ At the end test process terminates the simulator.
 
 It tests stock value calculations in several steps.
 
-### Testing {@link Exchange#calculateIndex()} 
+### ExchangeTest
 
 It tests exchange index calculation.
