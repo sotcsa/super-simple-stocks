@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Domain model to store a trade.
  * 
- * @author Csaba Soti
+ * @author Csaba Soti <csaba.soti.mail@gmail.com>
  */
 public class Trade {
 

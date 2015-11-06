@@ -12,7 +12,7 @@ import com.jpmorgan.supersimplestocks.domain.model.TradingHistory;
 /**
  * Simulates the trading system.
  * 
- * @author Csaba Soti
+ * @author Csaba Soti <csaba.soti.mail@gmail.com>
  */
 public class TradingSimulator implements Runnable {
 
@@ -32,6 +32,9 @@ public class TradingSimulator implements Runnable {
 		running = false;
 	}
 
+	/**
+	 * Starting simulator thread.
+	 */
 	@Override
 	public void run() {
 		Exchange exchange = Exchange.getInstance();

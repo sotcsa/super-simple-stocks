@@ -1,31 +1,25 @@
 package com.jpmorgan.supersimplestocks;
 
-import java.math.BigDecimal;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jpmorgan.supersimplestocks.domain.model.Exchange;
 import com.jpmorgan.supersimplestocks.domain.model.Stock;
-import com.jpmorgan.supersimplestocks.domain.model.StockType;
 import com.jpmorgan.supersimplestocks.domain.model.TradingHistory;
 import com.jpmorgan.supersimplestocks.utils.NumberFormatter;
 
 /**
- * Main class to start.
+ * Main class to start trading system and calculate values from random trades.
  * 
- * @author Csaba Soti
+ * @author Csaba Soti <csaba.soti.mail@gmail.com>
  */
-public class Main {
+public class Main extends CommonTest {
 
 	/** The Logger object */
 	private final static Logger logger = LoggerFactory.getLogger(Main.class);
 
-	/** Current exchange, with defined list of stocks. */
-	private static Exchange exchange;
 
 	/** The trade simulator trade */
 	private static TradingSimulator simulator = new TradingSimulator();
@@ -58,12 +52,7 @@ public class Main {
 	 */
 	@Before
 	public void init() {
-		exchange = Exchange.getInstance();
-		exchange.addStock(new Stock("TEA", StockType.COMMON,    BigDecimal.ZERO,        new BigDecimal("100.0")));
-		exchange.addStock(new Stock("POP", StockType.COMMON,    new BigDecimal("8.0"),  new BigDecimal("100.0")));
-		exchange.addStock(new Stock("ALE", StockType.COMMON,    new BigDecimal("23.0"), new BigDecimal("60.0")));
-		exchange.addStock(new Stock("GIN", StockType.PREFERRED, new BigDecimal("8.0"),  new BigDecimal("100.0"), new BigDecimal("0.02")));
-		exchange.addStock(new Stock("JOE", StockType.COMMON,    new BigDecimal("13.0"), new BigDecimal("250.0")));
+		prepareExchange();
 		new Thread(simulator).start();
 		try {
 			// waiting 1 second so that simulator can generate enough test data

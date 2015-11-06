@@ -8,7 +8,7 @@ import java.util.List;
  * The stock domain model. It can calculate stock related values from trading
  * system.
  * 
- * @author Csaba Soti
+ * @author Csaba Soti <csaba.soti.mail@gmail.com>
  */
 public class Stock {
 
@@ -115,7 +115,7 @@ public class Stock {
 	 * 
 	 * @return price
 	 */
-	private BigDecimal getTickerPrice() {
+	public BigDecimal getTickerPrice() {
 		return stockInfo.getTickerPrice(symbol);
 	}
 

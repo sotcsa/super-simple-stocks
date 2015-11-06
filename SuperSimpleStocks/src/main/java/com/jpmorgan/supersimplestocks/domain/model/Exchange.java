@@ -1,6 +1,7 @@
 package com.jpmorgan.supersimplestocks.domain.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -10,7 +11,7 @@ import java.util.Map.Entry;
 /**
  * The exchange domain model to store stocks and to calculate index.
  * 
- * @author Csaba Soti
+ * @author Csaba Soti <csaba.soti.mail@gmail.com>
  */
 public class Exchange {
 
@@ -62,14 +63,21 @@ public class Exchange {
 	 * @return the GBCE All Share Index
 	 */
 	public BigDecimal calculateIndex() {
-		BigDecimal product = BigDecimal.ONE;
+		BigDecimal product = new BigDecimal("1.00");
+		int numberOfPrices = 0;
 		for (Stock stock : stockMap.values()) {
 			BigDecimal stockPrice = stock.calculateStockPrice();
 			if (stockPrice != null) {
 				product = product.multiply(stockPrice);
+				numberOfPrices++;
 			}
 		}
-		return new BigDecimal(Math.pow(product.doubleValue(), 1.0 / getSize()));
+		if (numberOfPrices == 0) {
+			return product;
+		}
+		else {
+			return new BigDecimal(Math.pow(product.doubleValue(), 1.0 / numberOfPrices)).setScale(2, RoundingMode.HALF_EVEN);
+		}
 	}
 
 	/**
@@ -103,6 +111,12 @@ public class Exchange {
 		return stockMap.values();
 	}
 
+	/**
+	 * Retrieves stock by index (number).
+	 * 
+	 * @param stockIndex 
+	 * @return
+	 */
 	public Stock getStockByIndex(int stockIndex) {
 		Iterator<Entry<String, Stock>> iterator = stockMap.entrySet().iterator();
 		int n = 0;
@@ -114,6 +128,16 @@ public class Exchange {
 			n++;
 		}
 		return null;
+	}
+
+	/**
+	 * Retrieves stock by symbol.
+	 * 
+	 * @param symbol stock symbol
+	 * @return stock
+	 */
+	public Stock getStockBySymbol(final String symbol) {
+		return stockMap.get(symbol);
 	}
 
 }

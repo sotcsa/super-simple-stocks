@@ -16,7 +16,7 @@ import com.jpmorgan.supersimplestocks.utils.NumberFormatter;
 /**
  * Stores historical trade data in the memory.
  * 
- * @author Csaba Soti
+ * @author Csaba Soti <csaba.soti.mail@gmail.com>
  */
 public class TradingHistory {
 

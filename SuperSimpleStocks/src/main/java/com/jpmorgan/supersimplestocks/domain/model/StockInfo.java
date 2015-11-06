@@ -8,7 +8,7 @@ import java.util.Map;
  * Stock info contains the up-to-date values of stock trading.
  * It is used as stock price cache.
  * 
- * @author Csaba Soti
+ * @author Csaba Soti <csaba.soti.mail@gmail.com>
  */
 public class StockInfo {
 
