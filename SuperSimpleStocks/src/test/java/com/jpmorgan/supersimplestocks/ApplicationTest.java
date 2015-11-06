@@ -44,6 +44,7 @@ public class ApplicationTest extends CommonTest {
 				.concat(String.format("%1$15s|", NumberFormatter.format(stock.calculatePERatio())))
 				.concat(String.format("%1$15s|", NumberFormatter.format(stock.calculateStockPrice()))));
 		}
+		logger.info(String.format(String.format("%54s", " ").replace(" ", "-")));
 		logger.info(String.format("%s All Share Index: %s\n", exchange.getName(), NumberFormatter.format(exchange.calculateIndex())));
 	}
 
