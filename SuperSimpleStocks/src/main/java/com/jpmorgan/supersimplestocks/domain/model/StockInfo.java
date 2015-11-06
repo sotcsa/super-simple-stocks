@@ -2,11 +2,12 @@ package com.jpmorgan.supersimplestocks.domain.model;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
- * Stock info contains the up-to-date values of stock trading.
- * It is used as stock price cache.
+ * Stock info contains the up-to-date values of stock trading. It is used as
+ * stock price cache.
  * 
  * @author Csaba Soti <csaba.soti.mail@gmail.com>
  */
@@ -45,6 +46,13 @@ public class StockInfo {
 	 */
 	public BigDecimal getTickerPrice(final String symbol) {
 		return cache.get(symbol);
+	}
+
+	/**
+	 * Cleaning cache.
+	 */
+	public void reset() {
+		cache = new HashMap<String, BigDecimal>();
 	}
 
 }

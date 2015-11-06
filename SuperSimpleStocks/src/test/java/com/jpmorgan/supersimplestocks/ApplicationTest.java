@@ -11,14 +11,14 @@ import com.jpmorgan.supersimplestocks.domain.model.TradingHistory;
 import com.jpmorgan.supersimplestocks.utils.NumberFormatter;
 
 /**
- * Main class to start trading system and calculate values from random trades.
+ * ApplicationTest class to start trading system and calculate values from random trades.
  * 
  * @author Csaba Soti <csaba.soti.mail@gmail.com>
  */
-public class Main extends CommonTest {
+public class ApplicationTest extends CommonTest {
 
 	/** The Logger object */
-	private final static Logger logger = LoggerFactory.getLogger(Main.class);
+	private final static Logger logger = LoggerFactory.getLogger(ApplicationTest.class);
 
 
 	/** The trade simulator trade */
@@ -66,7 +66,7 @@ public class Main extends CommonTest {
 	 * Terminates the Simulator.
 	 */
 	@After
-	public void tearDown() {
+	public void terminateSimulator() {
 		simulator.terminate();
 	}
 }

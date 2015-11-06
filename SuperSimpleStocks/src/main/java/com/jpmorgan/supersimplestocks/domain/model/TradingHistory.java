@@ -102,4 +102,11 @@ public class TradingHistory {
 		}
 	}
 
+	/**
+	 * Cleaning trades.
+	 */
+	public void reset() {
+		trades = new LinkedList<Trade>();
+	}
+
 }
