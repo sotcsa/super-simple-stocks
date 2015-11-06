@@ -1,14 +1,15 @@
 /**
  * 
  */
-package com.jpmorgan.supersimplestocks;
+package com.jpmorgan.supersimplestocks.utils;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 /**
+ * Utility class to format numbers in proper way.
+ * 
  * @author csoti
- *
  */
 public class NumberFormatter {
 
@@ -17,6 +18,12 @@ public class NumberFormatter {
 	 */
 	private static final DecimalFormat df = new DecimalFormat("#,###,###,##0.00");
 
+	/**
+	 * Hidden constructor.
+	 */
+	private NumberFormatter() {
+		throw new AssertionError();
+	}
 	/**
 	 * 
 	 * @param bigDecimal

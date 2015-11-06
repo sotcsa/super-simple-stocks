@@ -8,7 +8,7 @@ This exercise project .
 * Java 1.7
 
 ## How to run?
-Run following JUnit test with Eclipse: com.test.supersimplestocks.Main.
+Run following JUnit test with Eclipse: com.jpmorgan.supersimplestocks.Main.
 
 It starts a Trading Simulator in separate thread, which records random trades in every 100 milliseconds.
 After one second the Main process calculates and displays stocks values.
